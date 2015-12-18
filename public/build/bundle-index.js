@@ -61,6 +61,11 @@
 	    'a',
 	    { href: 'dragSources' },
 	    '1.drag sources'
+	  ),
+	  React.createElement(
+	    'a',
+	    { href: 'singleTarget' },
+	    '2.single target'
 	  )
 	), document.getElementById('app'));
 

@@ -26878,7 +26878,7 @@
 	var Colors = __webpack_require__(294);
 	var ColorTarget = {
 	  drop: function drop(props, monitor, component) {
-	    console.log(component.props);
+	    console.log(props);
 	    component.props.onDrop(monitor.getItemType());
 	  }
 	};

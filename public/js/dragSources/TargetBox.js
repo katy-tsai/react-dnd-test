@@ -6,7 +6,7 @@ const ItemTypes = require('./ItemTypes').ItemTypes;
 const Colors = require('./Colors');
 const ColorTarget = {
   drop(props,monitor,component){
-    console.log(component.props);
+    console.log(props);
     component.props.onDrop(monitor.getItemType());
   }
 }
