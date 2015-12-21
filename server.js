@@ -17,6 +17,14 @@ app.get('/dragSources', function (req, res) {
     res.sendFile(path.resolve('./public/dragSources.html'));
 });
 
+app.get('/singleTarget', function (req, res) {
+    res.sendFile(path.resolve('./public/singleTarget.html'));
+});
+
+app.get('/multipleTarget', function (req, res) {
+    res.sendFile(path.resolve('./public/multipleTarget.html'));
+});
+
 app.listen(3000);
 console.log("App listening on port 3000")
 module.exports = app;

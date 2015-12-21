@@ -1,0 +1,3 @@
+exports.ItemTypes = {
+  BOX:'box'
+}
