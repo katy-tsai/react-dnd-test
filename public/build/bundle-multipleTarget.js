@@ -48,8 +48,8 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
-	var Container = __webpack_require__(159);
-	__webpack_require__(296);
+	var Container = __webpack_require__(300);
+	__webpack_require__(303);
 	ReactDOM.render(React.createElement(
 	  'div',
 	  null,
@@ -19644,54 +19644,7 @@
 
 
 /***/ },
-/* 159 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(158);
-	var DragDropContext = __webpack_require__(160).DragDropContext;
-	var HTML5Backend = __webpack_require__(237);
-	var SourceBox = __webpack_require__(292);
-	var Colors = __webpack_require__(294);
-	var TargetBox = __webpack_require__(295);
-	var Container = React.createClass({
-	  displayName: 'Container',
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: 'container' },
-	      React.createElement(
-	        'div',
-	        { className: 'source' },
-	        React.createElement(
-	          SourceBox,
-	          { color: Colors.BLUE },
-	          React.createElement(
-	            SourceBox,
-	            { color: Colors.YELLOW },
-	            React.createElement(SourceBox, { color: Colors.YELLOW }),
-	            React.createElement(SourceBox, { color: Colors.BLUE })
-	          )
-	        ),
-	        React.createElement(
-	          SourceBox,
-	          { color: Colors.BLUE },
-	          React.createElement(SourceBox, { color: Colors.YELLOW })
-	        )
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'target' },
-	        React.createElement(TargetBox, null)
-	      )
-	    );
-	  }
-	});
-	module.exports = DragDropContext(HTML5Backend)(Container);
-
-/***/ },
+/* 159 */,
 /* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -26760,246 +26713,12 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 292 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(158);
-	var PropTypes = __webpack_require__(1).PropTypes;
-	var DragSource = __webpack_require__(160).DragSource;
-	var ItemTypes = __webpack_require__(293).ItemTypes;
-	var Colors = __webpack_require__(294);
-	var ColorSource = {
-	  canDrag: function canDrag(props) {
-	    return !props.forbidDrag;
-	  },
-	  beginDrag: function beginDrag() {
-	    return {};
-	  }
-	};
-	function type(props) {
-	  return props.color;
-	}
-	function collect(connect, monitor) {
-	  return {
-	    connectDragSource: connect.dragSource(),
-	    isDragging: monitor.isDragging()
-	  };
-	}
-	var SourceBox = React.createClass({
-	  displayName: 'SourceBox',
-
-	  propTypes: {
-	    connectDragSource: PropTypes.func.isRequired,
-	    isDragging: PropTypes.bool.isRequired,
-	    color: PropTypes.string.isRequired,
-	    children: PropTypes.node
-	  },
-	  getInitialState: function getInitialState() {
-	    return {
-	      forbidDrag: false
-	    };
-	  },
-	  render: function render() {
-	    var color = this.props.color;
-	    var isDragging = this.props.isDragging;
-	    var opacity = isDragging ? 0.4 : 1;
-	    var forbidDrag = this.state.forbidDrag;
-	    var connectDragSource = this.props.connectDragSource;
-	    var children = this.props.children;
-	    var backgroundColor;
-	    switch (color) {
-	      case Colors.YELLOW:
-	        backgroundColor = "lightgoldenrodyellow";
-	        break;
-	      case Colors.BLUE:
-	        backgroundColor = "lightblue";
-	        break;
-	      default:
-	        break;
-	    }
-
-	    return connectDragSource(React.createElement(
-	      'div',
-	      { className: 'connectDragSource', style: { backgroundColor: backgroundColor, opacity: opacity, cursor: forbidDrag ? 'default' : 'move' } },
-	      React.createElement('input', { type: 'checkbox', checked: forbidDrag, onChange: this.onToggleForbidDrag }),
-	      React.createElement(
-	        'small',
-	        null,
-	        'Forbid drag'
-	      ),
-	      children
-	    ));
-	  },
-	  onToggleForbidDrag: function onToggleForbidDrag() {
-	    this.setState({
-	      forbidDrag: !this.state.forbidDrag
-	    });
-	  }
-	});
-	module.exports = DragSource(type, ColorSource, collect)(SourceBox);
-
-/***/ },
-/* 293 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	exports.ItemTypes = {
-	  CARD: 'card'
-	};
-
-/***/ },
-/* 294 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	module.exports = {
-	  YELLOW: 'yellow',
-	  BLUE: 'blue'
-	};
-
-/***/ },
-/* 295 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var ReactDom = __webpack_require__(158);
-	var PropTypes = React.PropTypes;
-	var DropTarget = __webpack_require__(160).DropTarget;
-	var ItemTypes = __webpack_require__(293).ItemTypes;
-	var Colors = __webpack_require__(294);
-	var ColorTarget = {
-	  drop: function drop(props, monitor, component) {
-	    console.log(props);
-	    component.props.onDrop(monitor.getItemType());
-	  }
-	};
-
-	function collect(connect, monitor) {
-	  return {
-	    connectDropTarget: connect.dropTarget(),
-	    isOver: monitor.isOver(),
-	    canDrop: monitor.canDrop(),
-	    draggingColor: monitor.getItemType()
-	  };
-	}
-
-	var TargetBox = React.createClass({
-	  displayName: 'TargetBox',
-
-	  PropTypes: {
-	    isOver: PropTypes.bool.isRequired,
-	    canDrop: PropTypes.bool.isRequired,
-	    draggingColor: PropTypes.string,
-	    lastDroppedColor: PropTypes.string,
-	    connectDropTarget: PropTypes.func.isRequired,
-	    onDrop: PropTypes.func.isRequired
-	  },
-	  getInitialState: function getInitialState() {
-	    return {
-	      lastDroppedColor: null
-	    };
-	  },
-
-	  getDefaultProps: function getDefaultProps() {
-	    return {
-	      onDrop: this.handleOnDrop
-	    };
-	  },
-	  render: function render() {
-	    var draggingColor = this.props.draggingColor;
-	    var isOver = this.props.isOver;
-	    var connectDropTarget = this.props.connectDropTarget;
-	    var canDrop = this.props.canDrop;
-	    var lastDroppedColor = this.props.lastDroppedColor;
-	    var opacity = isOver ? 1 : 0.7;
-	    var backgroundColor = '#fff';
-	    switch (draggingColor) {
-	      case Colors.BLUE:
-	        backgroundColor = "lightblue";
-	        break;
-	      case Colors.YELLOW:
-	        backgroundColor = "lightgoldenrodyellow";
-	        break;
-	      default:
-	        break;
-	    }
-
-	    return connectDropTarget(React.createElement(
-	      'div',
-	      { className: 'connectDropTarget', style: { backgroundColor: backgroundColor, opacity: opacity } },
-	      React.createElement(
-	        'p',
-	        null,
-	        'Drop here'
-	      ),
-	      !canDrop && lastDroppedColor && React.createElement(
-	        'p',
-	        null,
-	        'Last dropped:',
-	        lastDroppedColor
-	      )
-	    ));
-	  },
-	  handleOnDrop: function handleOnDrop() {
-	    return {
-	      onDrop: function onDrop(color) {
-	        this.setState({
-	          lastDroppedColor: color
-	        });
-	      }
-	    };
-	  }
-	});
-	module.exports = DropTarget([Colors.YELLOW, Colors.BLUE], ColorTarget, collect)(TargetBox);
-
-/***/ },
-/* 296 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(297);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(299)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./dragSource.less", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./dragSource.less");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 297 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(298)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".container {\n  overflow: 'hidden';\n  clear: 'both';\n  margin: '-.5rem';\n}\n.connectDragSource {\n  border: 1px dashed gray;\n  padding: 0.5rem;\n  margin: 0.5rem;\n}\n.connectDropTarget {\n  border: 1px dashed gray;\n  height: 15rem;\n  width: 15rem;\n  padding: 2rem;\n  text-align: center;\n}\n.source {\n  float: left;\n}\n.target {\n  float: left;\n  margin-left: 5rem;\n  margin-top: .5rem;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
 /* 298 */
 /***/ function(module, exports) {
 
@@ -27307,6 +27026,131 @@
 		if(oldSrc)
 			URL.revokeObjectURL(oldSrc);
 	}
+
+
+/***/ },
+/* 300 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(158);
+	var DragDropContext = __webpack_require__(160).DragDropContext;
+	var HTML5Backend = __webpack_require__(237);
+	var Dustbin = __webpack_require__(301);
+
+	var Container = React.createClass({
+	  displayName: 'Container',
+	  render: function render() {
+	    return React.createElement('div', null);
+	  }
+	});
+	module.exports = DragDropContext(HTML5Backend)(Container);
+
+/***/ },
+/* 301 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(158);
+	var DropTarget = __webpack_require__(160).DropTarget;
+	var PropTypes = React.PropTypes;
+	var ItemTypes = __webpack_require__(302).ItemTypes;
+	var boxTarget = {
+	  drop: function drop(props, monitor) {
+	    return props.onDrop(monitor.getItem);
+	  }
+	};
+
+	function collect(connect, monitor) {
+	  return {
+	    connectDropTarget: connect.dropTarget(),
+	    isOver: monitor.isOver(),
+	    canDrop: monitor.canDrop()
+	  };
+	}
+
+	var Dustbin = React.createClass({
+	  displayName: 'Dustbin',
+
+	  PropTypes: {
+	    connectDropTarget: PropTypes.func.isRequired,
+	    isOver: PropTypes.bool.isRequired,
+	    canDrop: PropTypes.bool.isRequired
+	  },
+	  render: function render() {
+	    var canDrop = this.props.canDrop;
+	    var isOver = this.props.isOver;
+	    var connectDropTarget = this.props.connectDropTarget;
+	    var isActive = canDrop && isOver;
+	    var backgroundColor = '#222';
+	    if (isActive) {
+	      backgroundColor = 'darkgreen';
+	    } else if (canDrop) {
+	      backgroundColor = 'darkkhaki';
+	    }
+	    return connectDropTarget(React.createElement(
+	      'div',
+	      { className: 'dragTarget-div', style: { backgroundColor: backgroundColor } },
+	      isActive ? 'Release to drop' : 'Drag a box here'
+	    ));
+	  }
+	});
+	module.exports = DropTarget(ItemTypes.BOX, boxTarget, collect)(Dustbin);;
+
+/***/ },
+/* 302 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.ItemTypes = {
+	  FOOD: 'food',
+	  GLASS: 'glass',
+	  PAPER: 'paper'
+	};
+
+/***/ },
+/* 303 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(304);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(299)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./multipleTarget.less", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./multipleTarget.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 304 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(298)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "", ""]);
+
+	// exports
 
 
 /***/ }

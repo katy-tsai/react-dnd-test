@@ -48,8 +48,8 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
-	var Container = __webpack_require__(300);
-	__webpack_require__(301);
+	var Container = __webpack_require__(305);
+	__webpack_require__(309);
 	ReactDOM.render(React.createElement(
 	  'div',
 	  null,
@@ -27029,7 +27029,12 @@
 
 
 /***/ },
-/* 300 */
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27038,11 +27043,10 @@
 	var ReactDOM = __webpack_require__(158);
 	var DragDropContext = __webpack_require__(160).DragDropContext;
 	var HTML5Backend = __webpack_require__(237);
-	var Dustbin = __webpack_require__(303);
-	var Box = __webpack_require__(305);
+	var Dustbin = __webpack_require__(306);
+	var Box = __webpack_require__(308);
 	var Container = React.createClass({
 	  displayName: 'Container',
-
 	  render: function render() {
 	    return React.createElement(
 	      'div',
@@ -27065,47 +27069,7 @@
 	module.exports = DragDropContext(HTML5Backend)(Container);
 
 /***/ },
-/* 301 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(302);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(299)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./singleTarget.less", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./singleTarget.less");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 302 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(298)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".dustbin-div,\n.box-div {\n  overflow: hidden;\n  clear: both;\n}\n.dragTarget-div {\n  height: 12rem;\n  width: 12rem;\n  margin-right: 1.5rem;\n  margin-bottom: 1.5rem;\n  color: white;\n  padding: 1rem;\n  text-align: center;\n  font-size: 1rem;\n  line-height: normal;\n  float: left;\n}\n.boxSource-div {\n  border: 1px dashed gray;\n  background-color: white;\n  padding: 0.5rem 1rem;\n  margin-right: 1.5rem;\n  margin-bottom: 1.5rem;\n  cursor: 'move';\n  float: left;\n}\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 303 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27114,7 +27078,7 @@
 	var ReactDOM = __webpack_require__(158);
 	var DropTarget = __webpack_require__(160).DropTarget;
 	var PropTypes = React.PropTypes;
-	var ItemTypes = __webpack_require__(304).ItemTypes;
+	var ItemTypes = __webpack_require__(307).ItemTypes;
 	var boxTarget = {
 	  drop: function drop(props) {
 	    return { name: 'Dustbin' };
@@ -27158,7 +27122,7 @@
 	module.exports = DropTarget(ItemTypes.BOX, boxTarget, collect)(Dustbin);;
 
 /***/ },
-/* 304 */
+/* 307 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27168,7 +27132,7 @@
 	};
 
 /***/ },
-/* 305 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27177,7 +27141,7 @@
 	var ReactDOM = __webpack_require__(158);
 	var PropTypes = __webpack_require__(1).PropTypes;
 	var DragSource = __webpack_require__(160).DragSource;
-	var ItemTypes = __webpack_require__(304).ItemTypes;
+	var ItemTypes = __webpack_require__(307).ItemTypes;
 
 	var boxSource = {
 	  beginDrag: function beginDrag(props) {
@@ -27224,6 +27188,46 @@
 	});
 
 	module.exports = DragSource(ItemTypes.BOX, boxSource, collect)(Box);
+
+/***/ },
+/* 309 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(310);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(299)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./singleTarget.less", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/less-loader/index.js!./singleTarget.less");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 310 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(298)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".dustbin-div,\n.box-div {\n  overflow: hidden;\n  clear: both;\n}\n.dragTarget-div {\n  height: 12rem;\n  width: 12rem;\n  margin-right: 1.5rem;\n  margin-bottom: 1.5rem;\n  color: white;\n  padding: 1rem;\n  text-align: center;\n  font-size: 1rem;\n  line-height: normal;\n  float: left;\n}\n.boxSource-div {\n  border: 1px dashed gray;\n  background-color: white;\n  padding: 0.5rem 1rem;\n  margin-right: 1.5rem;\n  margin-bottom: 1.5rem;\n  cursor: 'move';\n  float: left;\n}\n", ""]);
+
+	// exports
+
 
 /***/ }
 /******/ ]);

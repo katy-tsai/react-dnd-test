@@ -4,7 +4,9 @@ module.exports = {
     index:'./public/js/index',
     dragSources:'./public/js/dragSources',
     singleTarget:'./public/js/singleTarget',
-    multipleTarget:'./public/js/multipleTarget'    
+    multipleTarget:'./public/js/multipleTarget',
+    test:'./public/js/test',
+    sortable:'./public/js/sortable'
   },
   output:{
     path:path.join(__dirname,'public/build'),
@@ -20,8 +22,9 @@ module.exports = {
     {test: /\.less$/,loaders: ['style', 'css', 'less']},
     {test:/\.js[x]?$/,exclude:/node_modules/,loader:'babel-loader',
     query: {
-          optional: ['runtime']
-        }}
+      presets: ['react', 'es2015','stage-0'],
+      plugins: ['transform-runtime','syntax-decorators']
+    }}
   ]
 }
 }

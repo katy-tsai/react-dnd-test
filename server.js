@@ -25,6 +25,16 @@ app.get('/multipleTarget', function (req, res) {
     res.sendFile(path.resolve('./public/multipleTarget.html'));
 });
 
-app.listen(3000);
-console.log("App listening on port 3000")
+app.get('/dnd', function (req, res) {
+    res.sendFile(path.resolve('./public/dnd.html'));
+});
+app.get('/test', function (req, res) {
+    res.sendFile(path.resolve('./public/test.html'));
+});
+
+app.get('/sortable', function (req, res) {
+    res.sendFile(path.resolve('./public/sortable.html'));
+});
+app.listen(5000);
+console.log("App listening on port 5000")
 module.exports = app;

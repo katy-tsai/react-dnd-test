@@ -67,7 +67,26 @@
 	    'a',
 	    { href: 'singleTarget' },
 	    '2.single target'
-	  )
+	  ),
+	  React.createElement('br', null),
+	  React.createElement(
+	    'a',
+	    { href: 'simple' },
+	    '3.simple'
+	  ),
+	  React.createElement('br', null),
+	  React.createElement(
+	    'a',
+	    { href: 'test' },
+	    '4.test'
+	  ),
+	  React.createElement('br', null),
+	  React.createElement(
+	    'a',
+	    { href: 'sortable' },
+	    '5.sortable'
+	  ),
+	  React.createElement('br', null)
 	), document.getElementById('app'));
 
 /***/ },
