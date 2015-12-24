@@ -9,6 +9,7 @@ ReactDOM.render(
     <a href="simple" >3.simple</a><br />
     <a href="test" >4.test</a><br />
     <a href="sortable" >5.sortable</a><br />
+    <a href="listchoose" >6.listchoose</a><br />
   </div>
   ,document.getElementById('app')
 );

@@ -6,7 +6,8 @@ module.exports = {
     singleTarget:'./public/js/singleTarget',
     multipleTarget:'./public/js/multipleTarget',
     test:'./public/js/test',
-    sortable:'./public/js/sortable'
+    sortable:'./public/js/sortable',
+    listchoose:'./public/js/listchoose'
   },
   output:{
     path:path.join(__dirname,'public/build'),

@@ -1,0 +1,74 @@
+#chooseItem{
+  float: left;
+  display: inline-block;
+
+}
+#chooseItem >li{
+  list-style: none;
+  padding: 5px 10px;
+  /*border: 2px solid #ddd;*/
+  font-weight: bold;
+  font-size: 18px;
+  width: 100px;
+  height: 30px;
+  margin: 10px;
+   box-shadow: 2px 2px 5px #888888;
+   background-color: lightgoldenrodyellow;
+}
+
+#dropContainer >li{
+  list-style: none;
+  padding: 5px 10px;
+  /*border: 2px solid #ddd;*/
+  font-weight: bold;
+  font-size: 18px;
+  width: 100px;
+  height: 30px;
+  margin: 10px;
+   box-shadow: 2px 2px 5px #888888;
+   background-color: lightblue;
+}
+
+#dropContainer .placeholder{
+  border: dashed 1px #2c3e50;
+  opacity: 0.4;
+}
+.drag.drag-active {
+  border: solid 1px #2c3e50;
+}
+
+
+.container{
+border: dashed 2px #2c3e50;
+width: 300px;
+height: 600px;
+float: left;
+display: inline-block;
+
+}
+.container.drop-active {
+border: solid 1px #f1c40f;
+}
+.container ul{
+padding: 0;
+margin: 0;
+user-select:none;
+}
+.container ul>li{
+list-style: none;
+font-weight: bold;
+font-size: 18px;
+border-bottom:dashed 2px  #2c3e50;
+text-align: center;
+line-height: 20px;
+padding: 10px;
+}
+[draggable]{
+user-select:none;
+}
+[draggable=true] {
+  -khtml-user-drag: element;
+}
+.drop-active{
+  margin-top: 100px;
+}

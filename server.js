@@ -32,8 +32,16 @@ app.get('/test', function (req, res) {
     res.sendFile(path.resolve('./public/test.html'));
 });
 
+app.get('/drag', function (req, res) {
+    res.sendFile(path.resolve('./public/drag.html'));
+});
+
 app.get('/sortable', function (req, res) {
     res.sendFile(path.resolve('./public/sortable.html'));
+});
+
+app.get('/listchoose', function (req, res) {
+    res.sendFile(path.resolve('./public/listchoose.html'));
 });
 app.listen(5000);
 console.log("App listening on port 5000")

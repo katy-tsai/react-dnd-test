@@ -40,12 +40,22 @@
   .column.over{
     border:2px dashed #000;
   }
+  #drops{
+    width: 600px;
+    height: 600px;
+    border:2px dashed #000;
+    float: left;
+
+  }
   </style>
   <body>
     <div id="columns">
       <div class="column" draggable="true" obj="A"><header>A</header></div>
       <div class="column" draggable="true" obj="B"><header>B</header></div>
       <div class="column" draggable="true" obj="C"><header>C</header></div>
+    </div>
+    <div id ="drops">
+      drop
     </div>
 
     <script>
@@ -76,11 +86,14 @@
         if(e.stopPropagation){
           e.stopPropagation();
         }
+          console.log(this);
         if(dragSrcE1!=this){
-          dragSrcE1.innerHTML = this.innerHTML;
-          this.innerHTML = e.dataTransfer.getData('text/html');
+
+          // dragSrcE1.innerHTML = this.innerHTML;
+          this.innerHTML = e.dataTransfer.getData('obj');
           console.log(e.dataTransfer.getData('obj'));
         }
+        e
         return false;
       }
       function handleDragEnd(e){
@@ -95,9 +108,14 @@
         col.addEventListener('dragenter',handleDragEnter,false);
         col.addEventListener('dragover',handleDragOver,false);
         col.addEventListener('dragleave',handleDragLeave,false);
-        col.addEventListener('drop',handleDrop,false);
         col.addEventListener('dragend',handleDragEnd,false);
       })
+        var drops = document.querySelectorAll('#drops');
+        [].forEach.call(drops,function(col){
+          col.addEventListener('drop',handleDrop,false);
+
+        })
+
     </script>
 
   </body>
