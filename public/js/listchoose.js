@@ -8,7 +8,8 @@ var Listchoose = React.createClass({
   getInitialState:function(){
     return {
       data:this.props.data,
-      items:["Red","Green"]
+      items:["Red","Green"],
+      isdrop:false
     };
   },
   render(){
@@ -42,6 +43,7 @@ var Listchoose = React.createClass({
   dragStart:function(e){
     this.dragged = e.currentTarget;
   //  console.log(e.currentTarget);
+    this.setState({isdrop:false});
     e.dataTransfer.effectAllowed ='copy';
 
   },
@@ -73,16 +75,21 @@ var Listchoose = React.createClass({
 
     if(isNaN(to)){
       items=items.concat(data[form]);
-      this.setState({items:items});
+      this.setState({items:items,isdrop:true});
     }else{
       items.splice(to,0,data[form]);
-      this.setState({items:items});
+      this.setState({items:items,isdrop:true});
     }
 
 
   },
   dragEnd:function(e){
-    this.dragged.style.display = "block";
+    if(!this.state.isdrop){
+      var node = document.getElementById("dropContainer")
+      node.removeChild(placeholder);
+    }
+
+
 
   },
   dragEnter:function(e){

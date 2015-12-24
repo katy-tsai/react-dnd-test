@@ -58,7 +58,8 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      data: this.props.data,
-	      items: ["Red", "Green"]
+	      items: ["Red", "Green"],
+	      isdrop: false
 	    };
 	  },
 	  render: function render() {
@@ -97,6 +98,7 @@
 	  dragStart: function dragStart(e) {
 	    this.dragged = e.currentTarget;
 	    //  console.log(e.currentTarget);
+	    this.setState({ isdrop: false });
 	    e.dataTransfer.effectAllowed = 'copy';
 	  },
 	  dragOver: function dragOver(e) {
@@ -125,14 +127,17 @@
 
 	    if (isNaN(to)) {
 	      items = items.concat(data[form]);
-	      this.setState({ items: items });
+	      this.setState({ items: items, isdrop: true });
 	    } else {
 	      items.splice(to, 0, data[form]);
-	      this.setState({ items: items });
+	      this.setState({ items: items, isdrop: true });
 	    }
 	  },
 	  dragEnd: function dragEnd(e) {
-	    this.dragged.style.display = "block";
+	    if (!this.state.isdrop) {
+	      var node = document.getElementById("dropContainer");
+	      node.removeChild(placeholder);
+	    }
 	  },
 	  dragEnter: function dragEnter(e) {
 	    e.dataTransfer.dropEffect = 'copy';
@@ -20228,7 +20233,7 @@
 
 
 	// module
-	exports.push([module.id, "#chooseItem {\n  float: left;\n  display: inline-block;\n}\n#chooseItem > li {\n  list-style: none;\n  padding: 5px 10px;\n  /*border: 2px solid #ddd;*/\n  font-weight: bold;\n  font-size: 18px;\n  width: 100px;\n  height: 30px;\n  margin: 10px;\n  box-shadow: 2px 2px 5px #888888;\n  background-color: lightgoldenrodyellow;\n}\n#dropContainer > li {\n  list-style: none;\n  padding: 5px 10px;\n  /*border: 2px solid #ddd;*/\n  font-weight: bold;\n  font-size: 18px;\n  width: 100px;\n  height: 30px;\n  margin: 10px;\n  box-shadow: 2px 2px 5px #888888;\n  background-color: lightblue;\n}\n#dropContainer .placeholder {\n  border: dashed 1px #2c3e50;\n  opacity: 0.4;\n}\n.drag.drag-active {\n  border: solid 1px #2c3e50;\n}\n.container {\n  border: dashed 2px #2c3e50;\n  width: 300px;\n  height: 600px;\n  float: left;\n  display: inline-block;\n}\n.container.drop-active {\n  border: solid 1px #f1c40f;\n}\n.container ul {\n  padding: 0;\n  margin: 0;\n  user-select: none;\n}\n.container ul > li {\n  list-style: none;\n  font-weight: bold;\n  font-size: 18px;\n  border-bottom: dashed 2px  #2c3e50;\n  text-align: center;\n  line-height: 20px;\n  padding: 10px;\n}\n[draggable] {\n  user-select: none;\n}\n[draggable=true] {\n  -khtml-user-drag: element;\n}\n.drop-active {\n  margin-top: 100px;\n}\n", ""]);
+	exports.push([module.id, "#chooseItem {\n  float: left;\n  display: inline-block;\n}\n#chooseItem > li {\n  list-style: none;\n  padding: 5px 10px;\n  /*border: 2px solid #ddd;*/\n  font-weight: bold;\n  font-size: 18px;\n  width: 100px;\n  height: 30px;\n  margin: 10px;\n  box-shadow: 2px 2px 5px #888888;\n  background-color: lightgoldenrodyellow;\n}\n#dropContainer > li {\n  list-style: none;\n  padding: 5px 10px;\n  /*border: 2px solid #ddd;*/\n  font-weight: bold;\n  font-size: 18px;\n  width: 100px;\n  height: 30px;\n  margin: 10px;\n  box-shadow: 2px 2px 5px #888888;\n  background-color: lightblue;\n  user-select: none;\n}\n#dropContainer .placeholder {\n  border: dashed 1px #2c3e50;\n  opacity: 0.4;\n}\n.drag.drag-active {\n  border: solid 1px #2c3e50;\n}\n.container {\n  border: dashed 2px #2c3e50;\n  width: 300px;\n  height: 600px;\n  float: left;\n  display: inline-block;\n}\n.container.drop-active {\n  border: solid 1px #f1c40f;\n}\n.container ul {\n  padding: 0;\n  margin: 0;\n  user-select: none;\n}\n.container ul > li {\n  list-style: none;\n  font-weight: bold;\n  font-size: 18px;\n  border-bottom: dashed 2px  #2c3e50;\n  text-align: center;\n  line-height: 20px;\n  padding: 10px;\n}\n[draggable] {\n  user-select: none;\n}\n[draggable=true] {\n  -khtml-user-drag: element;\n}\n.drop-active {\n  margin-top: 100px;\n}\n", ""]);
 
 	// exports
 
